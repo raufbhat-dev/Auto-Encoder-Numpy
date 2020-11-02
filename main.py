@@ -10,7 +10,16 @@ AutoEncoder = importlib.reload(autoencoder).AutoEncoder
 
 inputs, Y = sklearn.datasets.load_digits( n_class=10, return_X_y=True)
 
-inputs = sklearn.preprocessing.scale(inputs)
+def dataScale(X):
+    mean_ = np.nanmean(X, axis = 0)
+    scale_ = np.nanstd(X, axis = 0)
+    print(scale_.shape)
+    X -= mean_
+    scale_[scale_ == 0.0] = 1.0
+    X /= scale_
+    return X
+
+inputs = dataScale(inputs)
 
 np.random.seed(0)
 

@@ -9,7 +9,11 @@ class Layer:
     def __init__(self, input_count, neruon_count, activation_func,layer_type):
         self.layer_type = layer_type
         self.activation_func = activation_func
-        self.w = np.random.randn(input_count,neruon_count) / np.sqrt(input_count) 
+        if self.activation_func.lower().endswith('elu'):
+            denominator = np.sqrt(neruon_count/2)
+        else:
+            denominator = np.sqrt(neruon_count)
+        self.w = np.random.randn(input_count,neruon_count) / denominator 
         self.w_delta = np.zeros((input_count,neruon_count))
         self.b = np.ones((neruon_count, 1))
         self.b_delta = np.zeros((neruon_count, 1))

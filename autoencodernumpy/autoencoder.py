@@ -7,9 +7,9 @@ layer = importlib.reload(layer)
 
 class AutoEncoder(NeuralNet):
     def __init__(self, loss_func, optimiser_method, learning_rate, epoch, partition_size, mode, network_arch,**kwargs):
+        super().__init__(loss_func, optimiser_method, learning_rate, epoch, partition_size, mode, network_arch,**kwargs)
         self.encoder_layer_list = [] 
         self.decoder_layer_list = []
-        super().__init__(loss_func, optimiser_method, learning_rate, epoch, partition_size, mode, network_arch,**kwargs)
         
                     
     def createNetwork(self):
